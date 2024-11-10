@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Country Capital Quiz</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body{
+        background-color: rgb(54, 123, 143);
+    }
+    .quiz-container {
+        background-color: rgba(152, 139, 99, 0.884);
+      max-width: 600px;
+      margin: 50px auto;
+      text-align: center;
+    }
+    .question {
+      font-size: 1.5em;
+      margin-bottom: 20px;
+    }
+    .score {
+      font-size: 1.2em;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container quiz-container pb-3 rounded">
+    <h1 class="mb-4 display-4">Country Capital Quiz</h1>
+
+    <!-- Display question (country) -->
+    <div class="question">
+      <p><strong>What is the capital of <%= country %>?</strong></p>
+    </div>
+
+    <!-- Form for submitting answer -->
+    <form action="/submit-answer" method="POST">
+      <div class="form-group">
+        <input type="text" class="form-control" name="capital" placeholder="Enter capital" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit Answer</button>
+    </form>
+
+    <!-- Display score -->
+    <div class="score">
+      <p>Your Score: <%= score %></p>
+    </div>
+
+    <!-- Feedback message for correct/incorrect answers -->
+    <% if (message) { %>
+      <div class="alert <%= message.type === 'correct' ? 'alert-success' : 'alert-danger' %> mt-3">
+        <%= message.text %>
+      </div>
+    <% } %>
+  </div>
+
+  <!-- Bootstrap and jQuery JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
